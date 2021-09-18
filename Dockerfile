@@ -9,3 +9,5 @@ RUN wget https://downloads.iedb.org/tools/mhcii/3.1.2/IEDB_MHC_II-3.1.2.tar.gz
 RUN tar -zxvf IEDB_MHC_II-3.1.2.tar.gz
 
 RUN pip install mhcflurry
+
+RUN conda install -c bioconda parasail-python
