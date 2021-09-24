@@ -8,6 +8,11 @@ RUN sudo apt-get update -y && \
     sudo apt-get install -y libbz2-dev && \
     sudo apt-get install -y liblzma-dev
 
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    mkdir /root/.conda && \
+    bash Miniconda3-latest-Linux-x86_64.sh -b && \
+    rm -f Miniconda3-latest-Linux-x86_64.sh
+
 RUN pip3 install numpy && \
     pip3 install pandas && \
     pip3 install matplotlib && \
