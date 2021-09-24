@@ -15,6 +15,8 @@ RUN pip3 install numpy && \
 
 RUN pip3 install mhcflurry
 
+ADD ./third_party /usr/local/lib/third_party
+
 ENV PATH=/usr/local/bin:$PATH
 
 RUN install2.r --error \
