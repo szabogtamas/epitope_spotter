@@ -15,10 +15,7 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &
 
 RUN conda install -c bioconda parasail-python mhcflurry
 
-RUN pip3 install numpy && \
-    pip3 install pandas && \
-    pip3 install matplotlib && \
-    pip3 install seaborn
+RUN conda install -c conda-forge matplotlib numpy pandas seaborn
 
 
 ADD ./third_party /usr/local/lib/third_party
