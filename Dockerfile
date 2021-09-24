@@ -13,6 +13,8 @@ RUN pip3 install numpy && \
     pip3 install matplotlib && \
     pip3 install seaborn
 
+RUN pip3 install mhcflurry
+
 ENV PATH=/usr/local/bin:$PATH
 
 RUN install2.r --error \
