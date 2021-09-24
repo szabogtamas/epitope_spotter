@@ -14,3 +14,24 @@ RUN pip3 install numpy && \
     pip3 install seaborn
 
 ENV PATH=/usr/local/bin:$PATH
+
+RUN install2.r --error \
+    --deps TRUE \
+    devtools \
+    rlang \
+    optparse \
+    docstring \
+    plotly \
+    heatmaply \
+    RColorBrewer \
+    ggsci \
+    ggridges \
+    pROC \
+    openxlsx \
+    readxl
+
+RUN R -e "devtools::install_github('kassambara/ggpubr')"
+
+RUN chmod a+rwx -R /home/rstudio
+
+ADD ./configs/rstudio-prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json
