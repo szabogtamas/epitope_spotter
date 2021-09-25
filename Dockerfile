@@ -26,6 +26,12 @@ RUN cd /usr/local/lib/third_party && \
   mv netchop-3.1 /usr/cbs/packages/netchop/3.1/netchop-3.1 && \
   cd /home/rstudio/
 
+RUN cd /usr/local/lib/third_party && \
+  tar -xvzf netmhcpan-4.1d.Linux.tar.gz && \
+  /usr/cbs/packages/netmhcpan/4.1/netmhcpan-4.1 && \
+  mv netchop-3.1 /usr/cbs/packages/netmhcpan/4.1/netmhcpan-4.1 && \
+  cd /home/rstudio/
+
 ENV PATH=/usr/local/bin:$PATH
 
 RUN install2.r --error \
