@@ -17,6 +17,8 @@ RUN conda install -c bioconda parasail-python mhcflurry
 
 RUN conda install -c conda-forge matplotlib numpy pandas seaborn
 
+RUN pip3 install git+https://github.com/FRED-2/Fred2
+
 
 ADD ./third_party /usr/local/lib/third_party
 
