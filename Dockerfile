@@ -14,7 +14,6 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &
     rm -f Miniconda3-latest-Linux-x86_64.sh
 
 RUN conda install -c bioconda parasail-python mhcflurry
-
 RUN conda install -c conda-forge matplotlib numpy pandas seaborn
 
 RUN pip3 install git+https://github.com/FRED-2/Fred2
@@ -47,11 +46,11 @@ RUN install2.r --error \
     RColorBrewer \
     ggsci \
     ggridges \
-    pROC \
     openxlsx \
     readxl
 
 RUN R -e "devtools::install_github('kassambara/ggpubr')"
+RUN R -e "devtools::install_github('masato-ogishi/Repitope')"
 
 RUN chmod a+rwx -R /home/rstudio
 
