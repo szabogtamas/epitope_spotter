@@ -22,15 +22,8 @@ RUN pip3 install git+https://github.com/FRED-2/Fred2
 ADD ./third_party /usr/local/lib/third_party
 
 RUN cd /usr/local/lib/third_party && \
-  tar -xvzf netchop-3.1d.Linux.tar.gz && \
-  /usr/cbs/packages/netchop/3.1/netchop-3.1 && \
-  mv netchop-3.1 /usr/cbs/packages/netchop/3.1/netchop-3.1 && \
-  cd /home/rstudio/
-
-RUN cd /usr/local/lib/third_party && \
-  tar -xvzf netmhcpan-4.1d.Linux.tar.gz && \
-  /usr/cbs/packages/netmhcpan/4.1/netmhcpan-4.1 && \
-  mv netchop-3.1 /usr/cbs/packages/netmhcpan/4.1/netmhcpan-4.1 && \
+  tar -xvzf netMHC-4.0a.Linux.tar.gz /usr/cbs/packages/netMHC/4.0/netMHC-4.0 && \
+  tar -xvzf netchop-3.1d.Linux.tar.gz /usr/cbs/packages/netchop/3.1/netchop-3.1 && \
   cd /home/rstudio/
 
 ENV PATH=/usr/local/bin:$PATH
