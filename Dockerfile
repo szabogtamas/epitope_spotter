@@ -16,8 +16,9 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 
 ENV PATH=$CONDA_DIR/bin:$PATH
 
-RUN conda install -c bioconda parasail-python mhcflurry
+RUN conda install -c bioconda mhcflurry
 RUN conda install -c conda-forge matplotlib numpy pandas seaborn
+RUN conda install -c bioconda -n parasail parasail-python
 
 RUN pip3 install git+https://github.com/FRED-2/Fred2
 
