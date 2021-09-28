@@ -27,10 +27,11 @@ RUN conda install -c bioconda -n fred fred2
 
 ADD ./third_party /usr/local/lib/third_party
 
-RUN cd /usr/local/lib/third_party && \
-  tar -xvzf netMHC-4.0a.Linux.tar.gz /usr/cbs/packages/netMHC/4.0/netMHC-4.0 && \
-  tar -xvzf netchop-3.1d.Linux.tar.gz /usr/cbs/packages/netchop/3.1/netchop-3.1 && \
-  cd /home/rstudio/
+RUN mkdir -p /usr/cbs/packages && \
+  mkkdir -p /usr/cbs/packages/netMHC/4.0 && \
+  tar -xvzf /usr/local/lib/third_party/netMHC-4.0a.Linux.tar.gz -C /usr/cbs/packages/netMHC/4.0/netMHC-4.0 && \
+  mkkdir -p /usr/cbs/packages/netchop/3.1 && \
+  tar -xvzf /usr/local/lib/third_party/netchop-3.1d.Linux.tar.gz -C /usr/cbs/packages/netchop/3.1/netchop-3.1
 
 ENV PATH=/usr/local/bin:$PATH
 
