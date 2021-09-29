@@ -50,6 +50,7 @@ RUN install2.r --error \
     readxl
 
 RUN R -e "BiocManager::install('Biostrings')"
+RUN R -e "BiocManager::install('msa')"
 
 RUN R -e "devtools::install_github('kassambara/ggpubr')"
 RUN R -e "devtools::install_github('masato-ogishi/Repitope')"
