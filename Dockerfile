@@ -6,7 +6,8 @@ RUN sudo apt-get update -y && \
     sudo apt-get install -y libcairo2-dev && \
     sudo apt-get install -y libxml2-dev && \
     sudo apt-get install -y libbz2-dev && \
-    sudo apt-get install -y liblzma-dev
+    sudo apt-get install -y liblzma-dev && \
+    sudo apt-get install -y default-jdk
 
 ENV CONDA_DIR $HOME/miniconda3
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
