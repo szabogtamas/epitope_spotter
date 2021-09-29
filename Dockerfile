@@ -46,6 +46,7 @@ RUN install2.r --error \
     heatmaply \
     RColorBrewer \
     ggsci \
+    rJava \
     ggridges \
     openxlsx \
     readxl
