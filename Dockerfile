@@ -49,6 +49,8 @@ RUN install2.r --error \
     openxlsx \
     readxl
 
+RUN R -e "BiocManager::install('Biostrings')"
+
 RUN R -e "devtools::install_github('kassambara/ggpubr')"
 RUN R -e "devtools::install_github('masato-ogishi/Repitope')"
 
