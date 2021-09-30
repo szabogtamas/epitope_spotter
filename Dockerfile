@@ -32,6 +32,8 @@ ADD ./third_party /usr/local/lib/third_party
 RUN mkdir -p /usr/cbs/packages && \
   mkdir -p /usr/cbs/packages/netMHC/4.0 && \
   tar -xvzf /usr/local/lib/third_party/netMHC-4.0a.Linux.tar.gz -C /usr/cbs/packages/netMHC/4.0 && \
+  mkdir -p /usr/cbs/bio/src/netMHCII-2.3 && \
+  tar -xvzf /usr/local/lib/third_party/netMHCII-2.3.Linux.tar.gz -C /usr/cbs/bio/src/netMHCII-2.3 && \
   mkdir -p /usr/cbs/packages/netchop/3.1 && \
   tar -xvzf /usr/local/lib/third_party/netchop-3.1d.Linux.tar.gz -C /usr/cbs/packages/netchop/3.1
 
