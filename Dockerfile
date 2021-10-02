@@ -34,6 +34,8 @@ RUN mkdir -p /usr/cbs/packages && \
   tar -xvzf /usr/local/lib/third_party/netMHC-4.0a.Linux.tar.gz -C /usr/cbs/packages/netMHC/4.0 && \
   mkdir -p /usr/cbs/bio/src/netMHCII-2.3 && \
   tar -xvzf /usr/local/lib/third_party/netMHCII-2.3.Linux.tar.gz -C /usr/cbs/bio/src/netMHCII-2.3 && \
+  mkdir -p /usr/cbs/packages/netMHCcons/1.1/netMHCcons-1.1 && \
+  tar -xvzf /usr/local/lib/third_party/netMHCcons-1.1a.Linux.tar.gz -C /usr/cbs/packages/netMHCcons/1.1/netMHCcons-1.1 && \
   mkdir -p /usr/cbs/packages/netchop/3.1 && \
   tar -xvzf /usr/local/lib/third_party/netchop-3.1d.Linux.tar.gz -C /usr/cbs/packages/netchop/3.1
 
