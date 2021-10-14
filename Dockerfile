@@ -20,6 +20,8 @@ ENV PATH=$CONDA_DIR/bin:$PATH
 
 RUN conda install -c bioconda mhcflurry
 RUN conda install -c conda-forge matplotlib numpy pandas seaborn
+RUN conda install -c dash dash_cytoscape
+RUN conda install -c plotly plotly jupyter-dash
 
 RUN conda create -n parasail python=3.7 libgcc-ng=9.3
 RUN conda install -c bioconda -n parasail parasail-python
