@@ -6,7 +6,7 @@ Toying around with epitope selection from a given protein based on MHC binding, 
 
 Development is in progress!
 
-Before building the dockr image, please obtain a standalone version of NetMHC from cbs.dtu.dk and copy the archive to the `third_party` folder.
+Before building the docker image, please obtain a standalone version of NetMHC and NetChop from cbs.dtu.dk and copy the archive to the `third_party` folder.
 
 To run rstudio inside the container, issue 
 ```
