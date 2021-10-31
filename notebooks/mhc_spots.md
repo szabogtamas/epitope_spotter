@@ -29,5 +29,15 @@ import pandas as pd
 ```python
 ### Define an antigen sequence
 
-antigen_sequence = "WQE"
+antigen_sequence = "WQERRTASAADFAAAKALAMAMA"
+```
+
+
+```python
+### Create 8-mer slices
+
+slices = []
+
+for i in range(8, len(antigen_sequence)):
+  slices.append(antigen_sequence[i-8, i])
 ```
