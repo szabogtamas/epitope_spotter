@@ -65,5 +65,6 @@ RUN R -e "devtools::install_github('kassambara/ggpubr')"
 RUN R -e "devtools::install_github('masato-ogishi/Repitope')"
 
 RUN chmod a+rwx -R /home/rstudio
+RUN chmod a+rwx -R /usr/cbs/packages
 
 ADD ./configs/rstudio-prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json
