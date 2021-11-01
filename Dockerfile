@@ -66,5 +66,6 @@ RUN R -e "devtools::install_github('masato-ogishi/Repitope')"
 
 RUN chmod a+rwx -R /home/rstudio
 RUN chmod a+rwx -R /usr/cbs/packages
+RUN cp /usr/cbs/bio/src/netMHCII-2.3/netMHCII-2.3/netMHCII.1 /usr/local/bin
 
 ADD ./configs/rstudio-prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json
