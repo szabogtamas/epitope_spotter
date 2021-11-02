@@ -16,8 +16,6 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     ~/miniconda.sh -b -p $CONDA_DIR && \
     rm ~/miniconda.sh
 
-ENV PATH=$CONDA_DIR/bin:$PATH
-
 RUN conda install -c conda-forge matplotlib numpy pandas seaborn jupytext
 RUN conda install -c conda-forge dash dash_cytoscape
 RUN conda install -c plotly plotly jupyter-dash
@@ -49,7 +47,7 @@ RUN mkdir -p /usr/cbs/packages && \
   sudo chmod -R 777 /usr/cbs/packages/netchop/3.1/ && \
   cp /usr/cbs/packages/netchop/3.1/netchop-3.1/netchop.1 /usr/local/bin
 
-ENV PATH=/usr/local/bin:$PATH
+ENV PATH=$CONDA_DIR/bin:/usr/local/bin:$PATH
 
 RUN install2.r --error \
     --deps TRUE \
