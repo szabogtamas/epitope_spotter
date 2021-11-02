@@ -34,20 +34,20 @@ ADD ./third_party /usr/local/lib/third_party
 RUN mkdir -p /usr/cbs/packages && \
   mkdir -p /usr/cbs/packages/netMHC/4.0 && \
   tar -xvzf /usr/local/lib/third_party/netMHC-4.0a.Linux.tar.gz -C /usr/cbs/packages/netMHC/4.0 && \
-  sudo chmod 777 /usr/cbs/packages/netMHC/4.0/ && \
-  cp /usr/cbs/packages/netMHC/4.0/netMHC.1 /usr/local/bin && \
+  sudo chmod -R 777 /usr/cbs/packages/netMHC/4.0/ && \
+  cp /usr/cbs/packages/netMHC/4.0/netMHC-4.0/netMHC.1 /usr/local/bin && \
   mkdir -p /usr/cbs/bio/src/netMHCII-2.3 && \
-  sudo chmod 777 /usr/cbs/bio/src/netMHCII-2.3/netMHCII-2.3/ && \
-  cp /usr/cbs/bio/src/netMHCII-2.3/netMHCII-2.3/netMHCII.1 /usr/local/bin && \
   tar -xvzf /usr/local/lib/third_party/netMHCII-2.3.Linux.tar.gz -C /usr/cbs/bio/src/netMHCII-2.3 && \
-  mkdir -p /usr/cbs/packages/netMHCcons/1.1/netMHCcons-1.1 && \
-  tar -xvzf /usr/local/lib/third_party/netMHCcons-1.1a.Linux.tar.gz -C /usr/cbs/packages/netMHCcons/1.1/netMHCcons-1.1 && \
-  sudo chmod 777 /usr/cbs/packages/netMHCcons/1.1/netMHCcons-1.1/ && \
+  sudo chmod -R 777 /usr/cbs/bio/src/netMHCII-2.3/netMHCII-2.3/ && \
+  cp /usr/cbs/bio/src/netMHCII-2.3/netMHCII-2.3/netMHCII.1 /usr/local/bin && \
+  mkdir -p /usr/cbs/packages/netMHCcons/1.1 && \
+  tar -xvzf /usr/local/lib/third_party/netMHCcons-1.1a.Linux.tar.gz -C /usr/cbs/packages/netMHCcons/1.1 && \
+  sudo chmod -R 777 /usr/cbs/packages/netMHCcons/1.1/netMHCcons-1.1/ && \
   cp /usr/cbs/packages/netMHCcons/1.1/netMHCcons-1.1/netMHCcons.1 /usr/local/bin && \
   mkdir -p /usr/cbs/packages/netchop/3.1 && \
   tar -xvzf /usr/local/lib/third_party/netchop-3.1d.Linux.tar.gz -C /usr/cbs/packages/netchop/3.1  && \
-  sudo chmod 777 /usr/cbs/packages/netchop/3.1/ && \
-  cp /usr/cbs/packages/netchop/3.1/netchop.1 /usr/local/bin
+  sudo chmod -R 777 /usr/cbs/packages/netchop/3.1/ && \
+  cp /usr/cbs/packages/netchop/3.1/netchop-3.1/netchop.1 /usr/local/bin
 
 ENV PATH=/usr/local/bin:$PATH
 
