@@ -18,10 +18,10 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 
 ENV PATH=$CONDA_DIR/bin:$PATH
 
-RUN conda install -c bioconda mhcflurry
 RUN conda install -c conda-forge matplotlib numpy pandas seaborn jupytext
 RUN conda install -c conda-forge dash dash_cytoscape
 RUN conda install -c plotly plotly jupyter-dash
+RUN conda install -c bioconda mhcflurry
 
 RUN conda create -n parasail python=3.7 libgcc-ng=9.3
 RUN conda install -c bioconda -n parasail parasail-python
@@ -75,3 +75,10 @@ RUN R -e "devtools::install_github('masato-ogishi/Repitope')"
 RUN chmod a+rwx -R /home/rstudio
 
 ADD ./configs/rstudio-prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json
+
+# Update default Jupyter launch to use conda base env
+RUN echo '#!/bin/bash \
+      \n cd /home/rstudio \
+      \n conda activate base \
+      \n /usr/local/bin/jupyter lab --ip=0.0.0.0 --port=8989 --allow-root' \
+      > /etc/services.d/jupyter/run
