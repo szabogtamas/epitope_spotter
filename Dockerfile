@@ -16,7 +16,9 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     ~/miniconda.sh -b -p $CONDA_DIR && \
     rm ~/miniconda.sh
 
-RUN conda install -c conda-forge matplotlib numpy pandas seaborn jupytext
+ENV PATH=$CONDA_DIR/bin:$PATH
+
+RUN conda install -c conda-forge matplotlib numpy pandas seaborn
 RUN conda install -c conda-forge dash dash_cytoscape
 RUN conda install -c plotly plotly jupyter-dash
 RUN conda install -c bioconda mhcflurry
