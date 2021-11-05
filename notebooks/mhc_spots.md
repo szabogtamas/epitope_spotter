@@ -8,14 +8,16 @@ jupyter:
       format_version: '1.3'
       jupytext_version: 1.13.0
   kernelspec:
-    display_name: Python 3
+    display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
 
+<!-- #region tags=[] -->
 # Parse MHC binding predictions for a set of peptides
 
 ## Dependencies
+<!-- #endregion -->
 
 ```python
 ### Tools to be used
@@ -32,12 +34,11 @@ import pandas as pd
 antigen_sequence = "WQERRTASAADFAAAKALAMAMA"
 ```
 
-
 ```python
 ### Create 8-mer slices
 
 slices = []
 
 for i in range(8, len(antigen_sequence)):
-  slices.append(antigen_sequence[i-8, i])
+    slices.append(antigen_sequence[i-8:i])
 ```
