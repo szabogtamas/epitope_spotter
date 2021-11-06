@@ -75,8 +75,12 @@ RUN chmod a+rwx -R /home/rstudio
 
 ADD ./configs/rstudio-prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json
 
+RUN conda init bash && \
+    echo "conda activate myenv" > ~/.bashrc
+
 # Update default Jupyter launch to use conda base env
 RUN echo '#!/bin/bash \
       \n cd /home/rstudio \
-      \n conda run -n base /usr/local/bin/jupyter lab --ip=0.0.0.0 --port=8989 --allow-root' \
+      \n conda activate base \
+      \n jupyter lab --ip=0.0.0.0 --port=8989 --allow-root' \
       > /etc/services.d/jupyter/run
