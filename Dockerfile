@@ -49,8 +49,6 @@ RUN mkdir -p /usr/cbs/packages && \
   sudo chmod -R 777 /usr/cbs/packages/netchop/3.1/ && \
   cp /usr/cbs/packages/netchop/3.1/netchop-3.1/netchop.1 /usr/local/bin
 
-ENV PATH=$CONDA_DIR/bin:/usr/local/bin:$PATH
-
 RUN install2.r --error \
     --deps TRUE \
     devtools \
