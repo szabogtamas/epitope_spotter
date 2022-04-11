@@ -30,53 +30,18 @@ RUN conda install -c bioconda -n parasail parasail-python
 RUN conda create -n fred python=2.7
 RUN conda install -c bioconda -n fred fred2
 
-ADD ./third_party /usr/local/lib/third_party
-
+ADD ./third_party /usr/local/lib/third_party/CBS
 RUN mkdir -p /usr/cbs/packages && \
-  mkdir -p /usr/cbs/packages/netMHC/4.0 && \
-  tar -xvzf /usr/local/lib/third_party/netMHC-4.0a.Linux.tar.gz -C /usr/cbs/packages/netMHC/4.0 && \
-  sudo chmod -R 777 /usr/cbs/packages/netMHC/4.0/ && \
-  cp /usr/cbs/packages/netMHC/4.0/netMHC-4.0/netMHC.1 /usr/local/bin && \
-  mkdir -p /usr/cbs/bio/src/netMHCII-2.3 && \
-  tar -xvzf /usr/local/lib/third_party/netMHCII-2.3.Linux.tar.gz -C /usr/cbs/bio/src/netMHCII-2.3 && \
-  sudo chmod -R 777 /usr/cbs/bio/src/netMHCII-2.3/netMHCII-2.3/ && \
-  cp /usr/cbs/bio/src/netMHCII-2.3/netMHCII-2.3/netMHCII.1 /usr/local/bin && \
-  mkdir -p /usr/cbs/packages/netMHCcons/1.1 && \
-  tar -xvzf /usr/local/lib/third_party/netMHCcons-1.1a.Linux.tar.gz -C /usr/cbs/packages/netMHCcons/1.1 && \
-  sudo chmod -R 777 /usr/cbs/packages/netMHCcons/1.1/netMHCcons-1.1/ && \
-  cp /usr/cbs/packages/netMHCcons/1.1/netMHCcons-1.1/netMHCcons.1 /usr/local/bin && \
-  mkdir -p /usr/cbs/packages/netchop/3.1 && \
-  tar -xvzf /usr/local/lib/third_party/netchop-3.1d.Linux.tar.gz -C /usr/cbs/packages/netchop/3.1  && \
-  sudo chmod -R 777 /usr/cbs/packages/netchop/3.1/ && \
-  cp /usr/cbs/packages/netchop/3.1/netchop-3.1/netchop.1 /usr/local/bin
-
-RUN install2.r --error \
-    --deps TRUE \
-    devtools \
-    rlang \
-    optparse \
-    docstring \
-    plotly \
-    heatmaply \
-    RColorBrewer \
-    ggsci \
-    rJava \
-    ggridges \
-    openxlsx \
-    readxl
-
-RUN R -e "BiocManager::install('Biostrings')"
-RUN R -e "BiocManager::install('msa')"
-
-RUN R -e "devtools::install_github('kassambara/ggpubr')"
-RUN R -e "devtools::install_github('masato-ogishi/Repitope')"
+  tar -xvzf /usr/local/lib/third_party/CBS/netMHC-4.0a.Linux.tar.gz -C /usr/cbs/packages && \
+  sed -i 's#/usr/cbs/packages/netMHC/4.0/netMHC-4.0#/usr/cbs/packages/netMHC-4.0#g' /usr/cbs/packages/netMHC-4.0/netMHC && \
+  sudo chmod -R 777 /usr/cbs/packages/netMHC-4.0/
 
 RUN chmod a+rwx -R /home/rstudio
 
 ADD ./configs/rstudio-prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json
 
-RUN conda init bash && \
-    echo "conda activate myenv" > ~/.bashrc
+# Will need to be moved up laer
+# ARG HOME="/"
 
 # Update default Jupyter launch to use conda base env
 RUN echo '#!/bin/bash \
