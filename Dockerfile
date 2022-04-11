@@ -43,6 +43,9 @@ ADD ./configs/rstudio-prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.jso
 # Will need to be moved up laer
 # ARG HOME="/"
 
+RUN sudo apt-get update -y && \
+    sudo apt-get install -y tcsh
+
 # Update default Jupyter launch to use conda base env
 RUN echo '#!/bin/bash \
       \n cd /home/rstudio \
