@@ -37,8 +37,8 @@ RUN mkdir -p /usr/cbs/packages && \
   sudo chmod -R 777 /usr/cbs/packages/netMHC-4.0/
 RUN mkdir -p /usr/cbs/packages && \
   tar -xvzf /usr/local/lib/third_party/CBS/netMHCII-2.3.Linux.tar.gz -C /usr/cbs/packages && \
-  sed -i 's#/usr/cbs/bio/src/netMHCII-2.3#g' /usr/cbs/packages/netMHCII-2.3/netMHCII-2.3 && \
-  sudo chmod -R 777 /usr/cbs/packages/netMHC-4.0/
+  sed -i 's#/usr/cbs/bio/src/netMHCII-2.3#/usr/cbs/packages/netMHCII-2.3#g' /usr/cbs/packages/netMHCII-2.3/netMHCII-2.3 && \
+  sudo chmod -R 777/usr/cbs/packages/netMHCII-2.3/
 RUN chmod 1777 /scratch
 
 RUN chmod a+rwx -R /home/rstudio
