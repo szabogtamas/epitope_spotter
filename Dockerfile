@@ -1,5 +1,7 @@
 FROM szabogtamas/jupy_rocker
 
+ARG HOME=""
+
 RUN sudo apt-get update -y && \
     sudo apt-get install -y libxt-dev && \
     sudo apt-get install -y libx11-dev && \
@@ -8,7 +10,8 @@ RUN sudo apt-get update -y && \
     sudo apt-get install -y libbz2-dev && \
     sudo apt-get install -y liblzma-dev && \
     sudo apt-get install -y default-jdk && \
-    sudo apt-get install -y libglpk-dev
+    sudo apt-get install -y libglpk-dev && \
+    sudo apt-get install -y tcsh
 
 ENV CONDA_DIR $HOME/miniconda3
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
@@ -38,18 +41,13 @@ RUN mkdir -p /usr/cbs/packages && \
 RUN mkdir -p /usr/cbs/packages && \
   tar -xvzf /usr/local/lib/third_party/CBS/netMHCII-2.3.Linux.tar.gz -C /usr/cbs/packages && \
   sed -i 's#/usr/cbs/bio/src/netMHCII-2.3#/usr/cbs/packages/netMHCII-2.3#g' /usr/cbs/packages/netMHCII-2.3/netMHCII-2.3 && \
-  sudo chmod -R 777/usr/cbs/packages/netMHCII-2.3/
-RUN chmod 1777 /scratch
+  sudo chmod -R 777 /usr/cbs/packages/netMHCII-2.3/
+RUN mkdir -p /scratch && \
+    chmod 1777 /scratch
 
 RUN chmod a+rwx -R /home/rstudio
 
 ADD ./configs/rstudio-prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json
-
-# Will need to be moved up laer
-# ARG HOME="/"
-
-RUN sudo apt-get update -y && \
-    sudo apt-get install -y tcsh
 
 # Update default Jupyter launch to use conda base env
 RUN echo '#!/bin/bash \
