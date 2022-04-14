@@ -25,8 +25,7 @@ RUN conda install -c conda-forge jupyterlab jupytext
 RUN conda install -c conda-forge matplotlib numpy pandas seaborn
 RUN conda install -c conda-forge dash dash_cytoscape
 RUN conda install -c plotly plotly jupyter-dash
-RUN conda install -c bioconda mhcflurry
-RUN conda install -c bioconda blast
+RUN conda install -c bioconda biopython blast mhcflurry
 
 RUN conda create -n parasail python=3.7 libgcc-ng=9.3
 RUN conda install -c bioconda -n parasail parasail-python
