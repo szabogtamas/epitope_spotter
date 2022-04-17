@@ -131,5 +131,10 @@ ax.legend(labelspacing=2, bbox_to_anchor=(1.04,1), borderpad=2)
 ```
 
 ```python
-
+sub_df = (
+    top_match_df
+    .loc[:,["aligned_seq", "long_name"]]
+    .drop_duplicates()
+    .reset_index()
+)
 ```
