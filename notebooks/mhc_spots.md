@@ -62,6 +62,15 @@ with open(peptide_fasta, "w") as file:
 
 ```python
 proteome = "human_proteome.fasta"
-out_file = "human_blast_matches.tsv"
-!blastp -query {peptide_fasta} -db {proteome_dir}/{proteome} -task blastp-short -ungapped -comp_based_stats F -evalue 50 -num_threads 4 -outfmt "6 qseqid sseqid sacc staxid sseq qseq length pident evalue bitscore score" -out {out_file}
+human_blast_results = "human_blast_matches.tsv"
+!blastp -query {peptide_fasta} -db {proteome_dir}/{proteome} -task blastp-short -ungapped -comp_based_stats F -evalue 50 -num_threads 4 -outfmt "6 qseqid sseqid sacc staxid sseq qseq length pident evalue bitscore score" -out {human_blast_results}
+```
+
+```python
+df_human = pd.read_csv(human_blast_results, sep="\t", names=blast_result_fields).sort_values(by="evalue")
+df_human["long_name"] = df_human["stitle"].str.replace(" OS.*", "", regex=True)
+df_human["long_name"] = df_human["long_name"].str.replace(" (Fragment)", "", regex=False)
+df_human["seq_pos"] = df_human["qseqid"].str.replace("epi_", "", regex=False).astype(int)
+df_human["pident"] = df_human["pident"].astype(float)
+df_human.head(15)
 ```
