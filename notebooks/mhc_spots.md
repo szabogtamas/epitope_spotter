@@ -81,10 +81,14 @@ df_human.head(15)
 ```
 
 ```python
-protein_hierarchy = (
+top_match_df = (
     df_human
     .loc[(((df_human["length"] > 6) & (df_human["pident"] == 100)) | (df_human["length"] > 7)),:]
     .loc[df_human["seq_origin"] == "epi_1",:]
+)
+
+protein_hierarchy = (
+    top_match_df
     .groupby(["long_name"])
     .agg(dict(evalue=min))
     .sort_values(by="evalue")
@@ -94,9 +98,7 @@ protein_hierarchy = (
 
 ```python
 sub_df = (
-    df_human
-    .loc[(((df_human["length"] > 6) & (df_human["pident"] == 100)) | (df_human["length"] > 7)),:]
-    .loc[df_human["seq_origin"] == "epi_1",:]
+    top_match_df
     .groupby(["long_name", "seq_pos"])
     .agg(dict(length=max, pident=max))
     .reset_index()
