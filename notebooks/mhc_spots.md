@@ -44,6 +44,11 @@ for i in range(8, len(antigen_sequence)):
 ```
 
 ```python
+blast_result_fields = ["qseqid", "sacc", "stitle", "staxid", "sseq", "qseq", "length", "pident", "evalue", "bitscore", "score"]
+blast_field_string = " ".join(["6"] + blast_result_fields)
+```
+
+```python
 # Create BLAST DB
 
 proteome = "human_proteome.fasta"
