@@ -128,6 +128,8 @@ ax.set_ylabel("")
 ax.grid()
 ax.set_title("Peptide positions with matches in the human proteome")
 ax.legend(labelspacing=2, bbox_to_anchor=(1.04,1), borderpad=2)
+
+fig.savefig(os.path.join(fig_dir, "human_blast_matches.pdf"), bbox_inches="tight")
 ```
 
 ```python
@@ -161,4 +163,6 @@ ax.set_ylabel("")
 ax.get_xaxis().set_visible(False)
 ax.get_yaxis().set_visible(False)
 ax.set_frame_on(False)
+
+fig.savefig(os.path.join(fig_dir, "human_blast_alignments.pdf"), bbox_inches="tight")
 ```
