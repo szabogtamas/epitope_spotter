@@ -109,6 +109,13 @@ ax = sns.scatterplot(
     x="seq_pos", y="long_name", hue="percent_identity", size="length",
     sizes=(1, 500), legend="brief", palette="viridis", ax=ax
 )
+
+ax.set_xticks(range(1, max(sub_df["seq_pos"])))
+ax.set_xlabel("Peptide position")
+ax.set_ylabel("")
+ax.grid()
+ax.set_title("Peptide positions with matches in the human proteome")
+ax.legend(labelspacing=2, bbox_to_anchor=(1.04,1), borderpad=2)
 ```
 
 ```python
