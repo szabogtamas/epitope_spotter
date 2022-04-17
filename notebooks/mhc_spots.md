@@ -79,3 +79,19 @@ df_human["seq_pos"] = df_human["qseqid"].str.replace("epi_", "", regex=False).as
 df_human["pident"] = df_human["pident"].astype(float)
 df_human.head(15)
 ```
+
+```python
+protein_hierarchy = (
+    df_human
+    .loc[(((df_human["length"] > 6) & (df_human["pident"] == 100)) | (df_human["length"] > 7)),:]
+    .loc[df_human["seq_origin"] == "epi_1",:]
+    .groupby(["long_name"])
+    .agg(dict(evalue=min))
+    .sort_values(by="evalue")
+    .reset_index()
+)
+```
+
+```python
+
+```
