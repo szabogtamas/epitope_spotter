@@ -137,4 +137,22 @@ sub_df = (
     .drop_duplicates()
     .reset_index()
 )
+
+N = sub_df.shape[0]
+fig, ax = plt.subplots(figsize=(9.6, 14.4))
+
+for index, row in sub_df.iterrows():
+    ax.text(0.51, N-index, row["aligned_seq"], family="monospace", ha="left")
+    ax.text(0.5, N-index, row["long_name"], ha="right")
+
+ax.text(0.51, N+1, SEQ, family="monospace", ha="left")
+ax.text(0.5, N+1, "Reference peptide", ha="right")
+
+ax.set_xlim(0, 1)
+ax.set_ylim(-1, N+2)
+ax.set_xlabel("")
+ax.set_ylabel("")
+ax.get_xaxis().set_visible(False)
+ax.get_yaxis().set_visible(False)
+ax.set_frame_on(False))
 ```
