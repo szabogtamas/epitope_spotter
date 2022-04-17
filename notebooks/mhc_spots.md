@@ -133,8 +133,9 @@ ax.legend(labelspacing=2, bbox_to_anchor=(1.04,1), borderpad=2)
 ```python
 sub_df = (
     top_match_df
-    .loc[:,["aligned_seq", "long_name"]]
+    .loc[:,["aligned_seq", "name_orders"]]
     .drop_duplicates()
+    .sort_values(by="name_orders")
     .reset_index()
 )
 
@@ -142,17 +143,22 @@ N = sub_df.shape[0]
 fig, ax = plt.subplots(figsize=(9.6, 14.4))
 
 for index, row in sub_df.iterrows():
-    ax.text(0.55, N-index, " " + row["aligned_seq"], family="monospace", ha="left")
-    ax.text(0.5, N-index, row["long_name"], ha="right")
+    for i, l in enumerate(row["aligned_seq"]):
+        if SEQ[i] == l:
+            ax.text((i+1)*0.05, 2*(N-index), l, family="monospace", ha="left", backgroundcolor="#00A087")
+        else:
+            ax.text((i+1)*0.05, 2*(N-index), l, family="monospace", ha="left")
+    ax.text(0, 2*(N-index), row["name_orders"], ha="right")
 
-ax.text(0.55, N+1, " " + SEQ, family="monospace", ha="left")
-ax.text(0.5, N+1, "Reference peptide", ha="right")
+for i, l in enumerate(SEQ):
+    ax.text((i+1)*0.05, N+1, l, family="monospace", ha="left", backgroundcolor="#00A087")
+ax.text(0, 2*N+1, "Reference peptide", ha="right")
 
-ax.set_xlim(0, 1)
-ax.set_ylim(-1, N+2)
+ax.set_xlim(0, (len(SEQ)+2)*0.05)
+ax.set_ylim(-1, 2*N+2)
 ax.set_xlabel("")
 ax.set_ylabel("")
 ax.get_xaxis().set_visible(False)
 ax.get_yaxis().set_visible(False)
-ax.set_frame_on(False))
+ax.set_frame_on(False)
 ```
