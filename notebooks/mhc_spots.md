@@ -93,7 +93,7 @@ top_match_df = (
     .loc[df_human["seq_origin"] == "epi_1",:]
 )
 
-top_match_df["aligned_seq"] = top_match_df.apply(aa_mapper, N=len(epitope_collection), axis=1)
+top_match_df["aligned_seq"] = top_match_df.apply(aa_mapper, N=len(epitope_collection)+epi_len, axis=1)
 
 protein_hierarchy = (
     top_match_df
