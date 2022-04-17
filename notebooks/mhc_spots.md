@@ -127,7 +127,9 @@ def aa_mapper(row, N):
     p = "".join(["."]*N_pre) + row["sseq"] + "".join(["."]*N_post)
     return p
 
-top_match_df.head().apply(aa_mapper, N=len(epitope_collection), axis=1)
+top_match_df["aligned_seq"] = top_match_df.apply(aa_mapper, N=len(epitope_collection), axis=1)
+
+top_match_df
 ```
 
 ```python
