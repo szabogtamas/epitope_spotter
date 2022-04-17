@@ -121,5 +121,15 @@ ax.legend(labelspacing=2, bbox_to_anchor=(1.04,1), borderpad=2)
 ```
 
 ```python
+def aa_mapper(row, N):
+    N_pre = row["seq_pos"] + row["qstart"] - 2
+    N_post = N - (N_pre + len(row["sseq"]))
+    p = "".join(["."]*N_pre) + row["sseq"] + "".join(["."]*N_post)
+    return p
+
+top_match_df.head().apply(aa_mapper, N=len(epitope_collection), axis=1)
+```
+
+```python
 
 ```
