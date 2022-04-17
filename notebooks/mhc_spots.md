@@ -103,7 +103,12 @@ sub_df = (
     .rename(columns=dict(pident="percent_identity"))
 )
 
-sub_df
+fig, ax = plt.subplots(figsize=(9.6, 14.4))
+ax = sns.scatterplot(
+    data=sub_df.set_index("long_name").loc[protein_hierarchy["long_name"].tolist(),:],
+    x="seq_pos", y="long_name", hue="percent_identity", size="length",
+    sizes=(1, 500), legend="brief", palette="viridis", ax=ax
+)
 ```
 
 ```python
