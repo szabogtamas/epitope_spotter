@@ -81,11 +81,19 @@ df_human.head(15)
 ```
 
 ```python
+def aa_mapper(row, N):
+    N_pre = row["seq_pos"] + row["qstart"] - 2
+    N_post = N - (N_pre + len(row["sseq"]))
+    p = "".join(["."]*N_pre) + row["sseq"] + "".join(["."]*N_post)
+    return p
+
 top_match_df = (
     df_human
     .loc[(((df_human["length"] > 6) & (df_human["pident"] == 100)) | (df_human["length"] > 7)),:]
     .loc[df_human["seq_origin"] == "epi_1",:]
 )
+
+top_match_df["aligned_seq"] = top_match_df.apply(aa_mapper, N=len(epitope_collection), axis=1)
 
 protein_hierarchy = (
     top_match_df
@@ -94,6 +102,8 @@ protein_hierarchy = (
     .sort_values(by="evalue")
     .reset_index()
 )
+
+top_match_df["name_orders"] = pd.Categorical(top_match_df["long_name"], categories=protein_hierarchy["long_name"].tolist(), ordered=True)
 ```
 
 ```python
@@ -118,18 +128,6 @@ ax.set_ylabel("")
 ax.grid()
 ax.set_title("Peptide positions with matches in the human proteome")
 ax.legend(labelspacing=2, bbox_to_anchor=(1.04,1), borderpad=2)
-```
-
-```python
-def aa_mapper(row, N):
-    N_pre = row["seq_pos"] + row["qstart"] - 2
-    N_post = N - (N_pre + len(row["sseq"]))
-    p = "".join(["."]*N_pre) + row["sseq"] + "".join(["."]*N_post)
-    return p
-
-top_match_df["aligned_seq"] = top_match_df.apply(aa_mapper, N=len(epitope_collection), axis=1)
-
-top_match_df
 ```
 
 ```python
