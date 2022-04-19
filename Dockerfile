@@ -45,6 +45,21 @@ RUN mkdir -p /usr/cbs/packages && \
 RUN mkdir -p /scratch && \
     chmod 1777 /scratch
 
+RUN install2.r --error \
+    --deps TRUE \
+    devtools \
+    rlang \
+    optparse \
+    docstring \
+    plotly \
+    heatmaply \
+    RColorBrewer \
+    ggsci \
+    rJava \
+    ggridges \
+    openxlsx \
+    readxl
+
 RUN chmod a+rwx -R /home/rstudio
 
 ADD ./configs/rstudio-prefs.json /home/rstudio/.config/rstudio/rstudio-prefs.json
