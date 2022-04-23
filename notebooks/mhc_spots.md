@@ -170,3 +170,18 @@ ax.set_frame_on(False)
 
 fig.savefig(os.path.join(fig_dir, "human_blast_alignments.pdf"), bbox_inches="tight")
 ```
+
+```python
+def netmhc_i_parser(fn):
+    molten_rows = []
+    with open(fn, "r") as f:
+        lines = f.read().split("\n")
+        alleles = lines[0].split("\t")[3::3]
+        N = len(alleles) - 1
+        for line in lines[2:-1]:
+            r = line.split("\t")
+            rowids = r[:3]
+            molten_rows += [[alleles[1]] + rowids + r[i*3+3:i*3+6] for i in range(0, N)]
+    df = pd.DataFrame.from_records(molten_rows, columns=["Allele", "Position", "Peptide", "ID", "nM", "Rank", "Core"])
+    return df
+```
