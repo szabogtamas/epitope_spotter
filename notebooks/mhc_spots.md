@@ -185,3 +185,20 @@ def netmhc_i_parser(fn):
     df = pd.DataFrame.from_records(molten_rows, columns=["Allele", "Position", "Peptide", "ID", "nM", "Rank", "Core"])
     return df
 ```
+
+```python
+def netmhc_ii_parser(fn):
+    with open(fn, "r") as f:
+        df = (
+            pd.DataFrame
+            .from_records([[x] for x in f.read().split("\n")], columns=["Raw"])
+        )
+        df = df.loc[df["Raw"] != "",:]
+        df = df.loc[~df["Raw"].str.contains("^#|----------|Allele: "),:]
+        df = df.iloc[2:]
+        df["Raw"] = df["Raw"].str.replace("\s+", " ", regex=True)
+        df = df["Raw"].str.split(" ", expand=True)
+        df.columns = df.iloc[0]
+        df = df.iloc[1:]
+    return df
+```
