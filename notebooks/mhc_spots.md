@@ -181,7 +181,7 @@ def netmhc_i_parser(fn):
         for line in lines[2:-1]:
             r = line.split("\t")
             rowids = r[:3]
-            molten_rows += [[alleles[1]] + rowids + r[i*3+3:i*3+6] for i in range(0, N)]
+            molten_rows += [[alleles[i]] + rowids + r[i*3+3:i*3+6] for i in range(0, N)]
     df = pd.DataFrame.from_records(molten_rows, columns=["Allele", "Position", "Peptide", "ID", "nM", "Rank", "Core"])
     return df
 ```
