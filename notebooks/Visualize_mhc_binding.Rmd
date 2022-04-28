@@ -1,0 +1,42 @@
+---
+title: "`r params$report_title`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: united
+    code_folding: hide
+params:
+  report_title: "Binding of epitope peptides to MHC"
+  report_author: "Tamas Szabo"
+  mhc_table: "../tables/netMHC_results.csv"
+---
+
+## Setup
+
+```{r results="hide", message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(RColorBrewer)
+
+filter <- dplyr::filter
+select <- dplyr::select
+arrange <- dplyr::arrange
+
+color_names <- c("#E64B35B2", "#4DBBD5B2", "#00A087B2", "#3C5488B2", "#F39B7FB2", "#8491B4B2")
+```
+
+## MHC binding
+
+```{r}
+mhci_tab <- params$mhc_table %>%
+  read.csv() %>%
+  mutate(
+    affinity = 1/log10(nM)
+  ) %>%
+  left_join(select(freq_tab, Allele, permille), by="Allele") %>%
+  arrange(Allele, Peptide)
+
+head(mhc_tab)
+```
