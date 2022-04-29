@@ -40,3 +40,22 @@ mhci_tab <- params$mhc_table %>%
 
 head(mhc_tab)
 ```
+
+```{r fig.width=9.6, fig.height=13.4}
+mhci_tab %>%
+  mutate(
+    Allele = factor(Allele, levels=rev(unique(mhc_tab$Allele)))
+  ) %>%
+  filter(!is.na(Peptide)) %>%
+  ggplot(aes(x=Peptide, y=Allele, fill=affinity)) +
+  geom_tile() +
+  scale_fill_gradientn(colors=brewer.pal(5, "Blues")) +
+  theme_bw() +
+  theme(
+    axis.text.x=element_text(angle=30, hjust=1),
+    axis.text.y=element_text(size=8)
+  ) +
+  labs(
+    x = "", y = "", title = "Predicted MHC binding affinity"
+  )
+```
