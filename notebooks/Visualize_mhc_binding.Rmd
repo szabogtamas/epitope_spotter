@@ -42,7 +42,7 @@ head(mhc_tab)
 ```
 
 ```{r fig.width=9.6, fig.height=13.4}
-mhci_tab %>%
+mhc_tab %>%
   mutate(
     Allele = factor(Allele, levels=rev(unique(mhc_tab$Allele)))
   ) %>%
@@ -58,4 +58,25 @@ mhci_tab %>%
   labs(
     x = "", y = "", title = "Predicted MHC binding affinity"
   )
+```
+
+```{r}
+p <- mhc_tab %>%
+  mutate(
+    Allele = factor(Allele, levels=rev(unique(mhc_tab$Allele)))
+  ) %>%
+  ggplot(aes(x=Peptide, y=Allele, size=affinity, color=affinity)) +
+  geom_point() +
+  scale_colour_gradientn(colors=brewer.pal(5, "Reds")) +
+  theme_bw() +
+  theme(
+    axis.text.x=element_text(angle=30, hjust=1),
+    axis.text.y=element_text(size=8)
+  ) +
+  labs(
+    x = "", y = "", color = "Affinity", size = "Affinity (1-log50k(nM))",
+    title = "Predicted binding affinity to MHC alleles"
+  )
+
+ggplotly(p, width=800, height=1200)
 ```
