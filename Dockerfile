@@ -37,10 +37,14 @@ ADD ./third_party /usr/local/lib/third_party/CBS
 RUN mkdir -p /usr/cbs/packages && \
   tar -xvzf /usr/local/lib/third_party/CBS/netMHC-4.0a.Linux.tar.gz -C /usr/cbs/packages && \
   sed -i 's#/usr/cbs/packages/netMHC/4.0/netMHC-4.0#/usr/cbs/packages/netMHC-4.0#g' /usr/cbs/packages/netMHC-4.0/netMHC && \
+  wget https://services.healthtech.dtu.dk/services/netMHC-4.0/data.Linux.tar.gz -P /usr/cbs/packages/netMHC-4.0 && \
+  tar -xvzf /usr/cbs/packages/netMHC-4.0/data.Linux.tar.gz && \
   sudo chmod -R 777 /usr/cbs/packages/netMHC-4.0/
 RUN mkdir -p /usr/cbs/packages && \
   tar -xvzf /usr/local/lib/third_party/CBS/netMHCII-2.3.Linux.tar.gz -C /usr/cbs/packages && \
   sed -i 's#/usr/cbs/bio/src/netMHCII-2.3#/usr/cbs/packages/netMHCII-2.3#g' /usr/cbs/packages/netMHCII-2.3/netMHCII-2.3 && \
+  wget https://services.healthtech.dtu.dk/services/NetMHCII-2.3/data.Linux.tar.gz -P /usr/cbs/packages/netMHCII-2.3 && \
+  tar -xvzf /usr/cbs/packages/netMHCII-2.3/data.Linux.tar.gz && \
   sudo chmod -R 777 /usr/cbs/packages/netMHCII-2.3/
 RUN mkdir -p /scratch && \
     chmod 1777 /scratch
