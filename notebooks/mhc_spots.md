@@ -202,3 +202,9 @@ def netmhc_ii_parser(fn):
         df = df.iloc[1:]
     return df
 ```
+
+```python
+peptides_file = "tmp/peptides.fa"
+
+!/usr/cbs/packages/netMHC-4.0/netMHC {peptides_file}
+```
