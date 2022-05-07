@@ -205,6 +205,12 @@ def netmhc_ii_parser(fn):
 
 ```python
 peptides_file = "tmp/peptides.fa"
+```
 
+```python
 !/usr/cbs/packages/netMHC-4.0/netMHC {peptides_file}
+```
+
+```python
+!/usr/cbs/packages/netMHCII-2.3 {peptides_file}
 ```
