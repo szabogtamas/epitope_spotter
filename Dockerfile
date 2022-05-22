@@ -38,7 +38,7 @@ RUN mkdir -p /usr/cbs/packages && \
   tar -xvzf /usr/local/lib/third_party/CBS/netMHC-4.0a.Linux.tar.gz -C /usr/cbs/packages && \
   sed -i 's#/usr/cbs/packages/netMHC/4.0/netMHC-4.0#/usr/cbs/packages/netMHC-4.0#g' /usr/cbs/packages/netMHC-4.0/netMHC && \
   wget https://services.healthtech.dtu.dk/services/NetMHC-4.0/data.tar.gz -P /usr/cbs/packages/netMHC-4.0 && \
-  tar -xvzf /usr/cbs/packages/netMHC-4.0/data.Linux.tar.gz && \
+  tar -xvzf /usr/cbs/packages/netMHC-4.0/data.tar.gz && \
   sudo chmod -R 777 /usr/cbs/packages/netMHC-4.0/
 RUN mkdir -p /usr/cbs/packages && \
   tar -xvzf /usr/local/lib/third_party/CBS/netMHCII-2.3.Linux.tar.gz -C /usr/cbs/packages && \
