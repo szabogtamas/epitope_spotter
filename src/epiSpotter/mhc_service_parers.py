@@ -28,3 +28,7 @@ def netmhc_ii_parser(fn):
         df = df.iloc[1:]
         df = df.loc[~(df["Allele"] == "Allele"),:]
     return df
+
+def iedb_parser(fn):
+    df = pd.read_csv(fn, sep="\t", skip=3)
+    return df
