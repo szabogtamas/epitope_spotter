@@ -29,6 +29,14 @@ import pandas as pd
 ```
 
 ```python
+sys.path.append("../src")  # developmental hack, to load the local version of the module
+%load_ext autoreload
+%autoreload 2
+
+import epiSpotter as epi
+```
+
+```python
 ### Define an antigen sequence
 
 antigen_sequence = "WQERRTASAADFAAAKALAMAMA"
